@@ -15,7 +15,7 @@ def dividir(a, b):
     else:
         return "Error: División por cero"
 
-def calculadora():
+def main():
     print("Selecciona la operación:")
     print("1. Sumar")
     print("2. Restar")
@@ -41,4 +41,6 @@ def calculadora():
         print("Opción no válida")
 
 # Ejecutar la calculadora
-calculadora()
+#calculadora()
+if __name__ == "__main__":
+    main()
