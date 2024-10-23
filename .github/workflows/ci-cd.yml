@@ -48,7 +48,7 @@ jobs:
       # 3. Configurar kubectl para GKE
       - name: Set up GKE Cluster
         run: |
-          gcloud container clusters get-credentials your-cluster-name --zone your-cluster-zone --project your-gcp-project-id
+          gcloud container clusters get-credentials calculadora-cluster-1 --region us-central1 --project masterdevsecops
 
       # 4. Desplegar la aplicación en Kubernetes
       - name: Deploy to GKE
