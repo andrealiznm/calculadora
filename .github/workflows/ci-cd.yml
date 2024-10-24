@@ -44,6 +44,7 @@ jobs:
 
       - name: Get GKE credentials
         run: |
+          gcloud auth activate-service-account --key-file="${{ secrets.GCP_SA_KEY }}"
           gcloud container clusters get-credentials calculadora-cluster-1 --region us-central1 --project masterdevsecops
 
       - name: Deploy to GKE
