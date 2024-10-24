@@ -46,8 +46,12 @@ jobs:
         run: |
           gcloud auth configure-docker
 
+      - name: Get GKE credentials
+        run: |
+          gcloud container clusters get-credentials calculadora-cluster-1 --region us-central1 --project masterdevsecops
+
       - name: Deploy to GKE
         run: |
-          kubectl set image deployment/deployment calculadora=ghcr.io/andrealiznm/calculadora:latest
-          kubectl rollout status deployment/deployment
+          kubectl set image deployment/calculadora calculadora=ghcr.io/andrealiznm/calculadora:latest
+          kubectl rollout status deployment/calculadora
           
