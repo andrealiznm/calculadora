@@ -42,10 +42,6 @@ jobs:
       - name: Install gke-gcloud-auth-plugin
         run: gcloud components install gke-gcloud-auth-plugin
 
-      - name: Configure Docker to use the gcloud command-line tool as a credential helper
-        run: |
-          gcloud auth configure-docker
-
       - name: Get GKE credentials
         run: |
           gcloud container clusters get-credentials calculadora-cluster-1 --region us-central1 --project masterdevsecops
