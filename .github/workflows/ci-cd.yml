@@ -36,15 +36,20 @@ jobs:
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          service_account_key: ${{ secrets.GCP_SA_KEY }} # El secreto que contiene tu clave de cuenta de servicio
           project_id: masterdevsecops
 
       - name: Install gke-gcloud-auth-plugin
         run: gcloud components install gke-gcloud-auth-plugin
 
+      - name: Authenticate with GKE using Service Account
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/gcloud-key.json
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" > $GOOGLE_APPLICATION_CREDENTIALS
+          gcloud auth activate-service-account --key-file="$GOOGLE_APPLICATION_CREDENTIALS"
+
       - name: Get GKE credentials
         run: |
-          gcloud auth activate-service-account --key-file="${{ secrets.GCP_SA_KEY }}"
           gcloud container clusters get-credentials calculadora-cluster-1 --region us-central1 --project masterdevsecops
 
       - name: Deploy to GKE
