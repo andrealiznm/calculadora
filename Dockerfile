@@ -12,4 +12,4 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Ejecucion de la aplicación
-CMD ["python", "calculadora.py"]
+CMD ["python3", "calculadora.py"]
